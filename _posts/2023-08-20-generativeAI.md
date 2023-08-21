@@ -7,7 +7,9 @@ Generative AI is a field with the potential to create new nonexistent/synthetic 
 
 Generative AI has the potential to transform and complement clinicians' abilities and hence, can improve patient care, drug discovery, and diagnostics. In addition, it can assist in overcoming the challenges faced by medical image analysis researchers due to lack of data, especially for some rare to find abnormalities. Including generative AI in clinical treatments provides various benefits, such as increased training samples for undersampled medical image classes, exemption from the procedures involved in collecting sensitive data and related privacy concerns, and personalized plans for retrospective treatments based on the patient's medical history. Apart from new content generation, the image-to-image translations supported by generative models introduce new ways to explore some significant tasks, such as noise/artifacts removal and domain adaptation. This article discusses a similar artifacts removal technique using CycleGAN which explores the abilities of generative models in transforming the uninformative colonoscopy image frames into clinically significant frames. This discussion is based on "Can Adversarial Networks Make Uninformative Colonoscopy Video Frames Clinically Informative? (Student Abstract)", published in AAAI 2023. The article covers the concept, implementation details, and code execution guidelines.
 
-Colonoscopy videos are acquired using a coloscope mounted with a camera. During the procedure, a large amount of video frames are captured. However, not all frames satisfy the image quality requirements necessary for correct pathological diagnosis. The factors affecting the image quality include improper patient preparation and abrupt camera movements that introduce unwanted artifacts such as ghost colors, interlacing, and motion blur. The presence of these artifacts can hinder both manual and automated diagnosis of serious abnormalities like colorectal cancer. To address the issue of insignificant/uninformative frames and  extract obscured significant/informative details, an adversarial network based approach is discussed, inspired by the unpaired image-to-image translation supported by CycleGAN. In medical imaging, obtaining paired sets of data with uninformative and informative counterparts is difficult. Hence, it is important to adopt an unpaired approach that can learn from the data distribution of one domain (a pool of significant frames) and translate the images of another domain such that they are indistinguishable from the former. In short, we have a domain A containing uninformative frames and a domain B with informative frames. Our aim is to translate domain A frames into domain B frames such that the translated data is indistinguishable from the original insignificant frames.
+## Brief Introduction 
+
+Colonoscopy videos are acquired using a coloscope mounted with a camera. During the procedure, a large amount of video frames are captured. However, not all frames satisfy the image quality requirements necessary for correct pathological diagnosis. The factors affecting the image quality include improper patient preparation and abrupt camera movements that introduce unwanted artifacts such as ghost colors, interlacing, and motion blur. The presence of these artifacts can hinder both manual and automated diagnosis of serious abnormalities like colorectal cancer. To address the issue of insignificant/uninformative frames and  extract obscured significant/informative details, an adversarial network based approach is discussed, inspired by the unpaired image-to-image translation supported by CycleGAN. In medical imaging, obtaining paired sets of data with uninformative and informative counterparts is difficult. Hence, it is important to adopt an unpaired approach that can learn from the data distribution of one domain (a pool of significant frames) and translate the images to another domain such that they are indistinguishable from the former. In short, we have a domain A containing uninformative frames and a domain B with informative frames. We aim to translate domain A frames into domain B frames such that the translated data is indistinguishable from the original insignificant frames.
 
 ```
 Domain A: Uninformative colonoscopy frames
@@ -22,3 +24,31 @@ G_BA_: B -> A
 DB: Distinguishes B from G(AB)
 DA: Distinguishes B from G(BA)
 ```
+
+## Objective Function
+The objective function of CycleGAN comprises two components: *Adversarial loss* and *Cycle-consistency loss*.
+
+The concept behind adversarial loss is the same as in other GAN-based approaches. The generators try to *fool* their corresponding discriminators so that they are not able to distinguish between the synthetic images with the real ones. The adversarial loss helps calculate the distance between the data distributions related to the generated and the original frames. It can be defined as:
+
+$`
+L_{adv}(G_{AB}, D_B) = \mathbb{E}_{b\sim p_{data}(b)}[(D_B (b)-1)^2] + \mathbb{E}_{a\sim p_{data}(a)}[(D_B(G_{AB}(a)))^2]
+`$
+
+An important component of the CycleGAN is the cycle-consistency loss. Due to unmapped data in both the domains, the same set of images can be mapped randomly to any possible pemutations in the another domain. To avoid this situation, cycle-consistency loss plays an important role. It can be defined as:
+
+$`
+L_{cyc}(G_{AB}, G_{BA}) = \mathbb{E}_{a\sim p_{data}(a)}[\lVert G_{BA}(G_{AB}(a))-a\rVert_1] + \mathbb{E}_{b\sim p_{data}(b)}[\lVert G_{AB}(G_{BA}(b))-b\rVert_1]
+`$
+
+
+The idea is:
+
+```
+If we translate the domain A (source) distribution to the domain B (target) distribution and then again try to translate the domain B (target) distribution to the domain A (source) distribution, we should be able to obtain samples from domain A (source). 
+```
+
+## Implementation Details
+
+
+
+
