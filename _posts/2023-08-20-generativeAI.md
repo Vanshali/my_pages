@@ -29,8 +29,8 @@ $`D_B:`$ Distinguishes B from $` G_{AB}(A) `$
 $` D_A `$: Distinguishes B from $` G_{BA}(B)`$
 
 <figure>
-  <img src="https://github.com/Vanshali/my_pages/edit/main/_posts/cyclegan_diag.png" alt="Alt Text">
-  <figcaption>The proposed framework contains two generators G<sub>AB</sub> and G<sub>BA</sub> and two discriminators D<sub>A</sub> and D<sub>B</sub> (Source).</figcaption>
+  <img src="./cyclegan_diag.png" alt="CycleGAN">
+  <figcaption>The proposed framework contains two generators G<sub>AB</sub> and G<sub>BA</sub> and two discriminators D<sub>A</sub> and D<sub>B</sub> <a gref= "https://ojs.aaai.org/index.php/AAAI/article/view/27021">[Source]</a>.</figcaption>
 </figure>
 
 
@@ -44,7 +44,7 @@ $`
 L_{adv}(G_{AB}, D_B) = \mathbb{E}_{b\sim p_{data}(b)}[(D_B (b)-1)^2] + \mathbb{E}_{a\sim p_{data}(a)}[(D_B(G_{AB}(a)))^2]
 `$
 
-An important component of the CycleGAN is the cycle-consistency loss. Due to unmapped data in both the domains, the same set of images can be mapped randomly to any possible pemutations in the another domain. To avoid this situation, cycle-consistency loss plays an important role. It can be defined as:
+An important component of the CycleGAN is the cycle-consistency loss. Due to unmapped data in both domains, the same set of images can be mapped randomly to any possible permutations in the other domain. To avoid this situation, cycle-consistency loss plays an important role. It can be defined as:
 
 $`
 L_{cyc}(G_{AB}, G_{BA}) = \mathbb{E}_{a\sim p_{data}(a)}[\lVert G_{BA}(G_{AB}(a))-a\rVert_1] + \mathbb{E}_{b\sim p_{data}(b)}[\lVert G_{AB}(G_{BA}(b))-b\rVert_1]
@@ -67,7 +67,7 @@ Let's train the CycleGAN using the below command:
 ```
 python3 train.py --dataroot ./datasets/data --name colonframes --model cycle_gan --display_id 0
 ```
-Here, you can give any name for --name option for your model. By default, the generators follow 9 ResNet blocks architecture, and the discriminators use PatchGAN-based architecture. You can explore different architectures using --netG and --netD argument options, and this argument list can be found in *options/base_options.py*. One example usage is given below:
+Here, you can give any name for --name option for your model. By default, the generators follow 9 ResNet blocks architecture, and the discriminators use PatchGAN-based architecture. You can explore different architectures using --netG and --netD argument options, and this argument list can be found in *options/base_options.py*. One example of usage is given below:
 
 ```
 python3 train.py --dataroot ./datasets/data --name colonframes --model cycle_gan --display_id 0 --netG unet_256 
