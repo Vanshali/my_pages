@@ -1,5 +1,5 @@
 ---
-title: "Generative AI in Medical mages"
+title: "Generative AI in Medical Images"
 date: 2023-08-20
 ---
 
@@ -17,7 +17,7 @@ Domain B: Informative colonoscopy frames
 Aim: Translate Domain A to Domain B
 ```
 Note that we do not have paired data, i.e., no mapping between the images of two domains. This major challenge which we often come across in medical images, is gracefully handled by the concept introduced in CycleGAN. Like a general GAN, it has a generator and a discriminator but notice their count difference. *It has two generators and two discriminators.* Let's discuss their specific tasks.
-The generator $` G_{AB} `$ learns the mapping function that targets to translate domain A frames to domain B frames, whereas the generator $` G_{BA} `$ learns to translate domain B frames to domain A frames. Both generators have their corresponding discriminator that aims to distinguish the synthetic images from the real ones.
+The generator $$ G_{AB} $$ learns the mapping function that targets to translate domain A frames to domain B frames, whereas the generator $` G_{BA} `$ learns to translate domain B frames to domain A frames. Both generators have their corresponding discriminator that aims to distinguish the synthetic images from the real ones.
 
 
 $` G_{AB}: A \rightarrow B `$ 
@@ -41,9 +41,9 @@ The objective function of CycleGAN comprises two components: *Adversarial loss* 
 
 The concept behind adversarial loss is the same as in other GAN-based approaches. The generators try to *fool* their corresponding discriminators so that they are not able to distinguish between the synthetic images with the real ones. The adversarial loss helps calculate the distance between the data distributions related to the generated and the original frames. It can be defined as:
 
-$`
+$$
 L_{adv}(G_{AB}, D_B) = \mathbb{E}_{b\sim p_{data}(b)}[(D_B (b)-1)^2] + \mathbb{E}_{a\sim p_{data}(a)}[(D_B(G_{AB}(a)))^2]
-`$
+$$
 
 An important component of the CycleGAN is the cycle-consistency loss. Due to unmapped data in both domains, the same set of images can be mapped randomly to any possible permutations in the other domain. To avoid this situation, cycle-consistency loss plays an important role. It can be defined as:
 
