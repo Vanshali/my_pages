@@ -30,12 +30,13 @@ $` D_A `$: Distinguishes B from $` G_{BA}(B)`$
 
 <figure>
   <img src="/my_pages/assets/cyclegan_diag.png" alt="CycleGAN">
-  <figcaption>The proposed framework contains two generators G<sub>AB</sub> and G<sub>BA</sub> and two discriminators D<sub>A</sub> and D<sub>B</sub> (source:"https://ojs.aaai.org/index.php/AAAI/article/view/27021">).</figcaption>
+  <figcaption>The proposed framework contains two generators G<sub>AB</sub> and G<sub>BA</sub> and two discriminators D<sub>A</sub> and D<sub>B</sub> (source:"https://ojs.aaai.org/index.php/AAAI/article/view/27021").</figcaption>
 </figure>
 
 
 
 ## Objective Function
+
 The objective function of CycleGAN comprises two components: *Adversarial loss* and *Cycle-consistency loss*.
 
 The concept behind adversarial loss is the same as in other GAN-based approaches. The generators try to *fool* their corresponding discriminators so that they are not able to distinguish between the synthetic images with the real ones. The adversarial loss helps calculate the distance between the data distributions related to the generated and the original frames. It can be defined as:
@@ -58,6 +59,7 @@ If we translate the domain A (source) distribution to the domain B (target) dist
 ```
 
 ## Implementation Details
+
 The PyTorch implementation of CycleGAN is available at [https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). The dataset used in this work (SUN Database) can be obtained on sending a request as per the instructions mentioned on [http://sundatabase.org/](http://sundatabase.org/). Also, to obtain the annotations for informative and uninformative frames, you can refer to [this](https://ieeexplore.ieee.org/abstract/document/10017475/) paper and can contact me at [this](mailto:vanshalisharma@iitg.ac.in)
 mail id. 
 Once you download the code and the dataset, create a folder *./data* inside your downloaded code's *dataset* folder. Then create subfolders *testA*, *testB*, *trainA*, and *trainB*. Place your uninformative frames pertaining to the train and test set in the *trainA* and *testA* subfolders, respectively. Do the same for informative frames and place them in the *trainB* and *testB* folders. 
@@ -74,10 +76,19 @@ python3 train.py --dataroot ./datasets/data --name colonframes --model cycle_gan
 ```
 
 To test the model, execute the following command:
-``
+
+```
 python test.py --dataroot ./datasets/data/testA --name colonframes --model test --no_dropout --num_test 1000
-``
+```
+
 Remember to replace --num_test option with the count of images you want to test. 
+
+## Strengths and Limitations
+
+Now the most important question is, ***"How good are the generated images?"*** (This question is critical in medical image analysis). 
+
+
+
 
 
 
