@@ -30,7 +30,7 @@ $` D_A `$: Distinguishes B from $` G_{BA}(B)`$
 
 <figure>
   <img src="./cyclegan_diag.png" alt="CycleGAN">
-  <figcaption>The proposed framework contains two generators G<sub>AB</sub> and G<sub>BA</sub> and two discriminators D<sub>A</sub> and D<sub>B</sub> <a gref= "https://ojs.aaai.org/index.php/AAAI/article/view/27021">[Source]</a>.</figcaption>
+  <figcaption>The proposed framework contains two generators G<sub>AB</sub> and G<sub>BA</sub> and two discriminators D<sub>A</sub> and D<sub>B</sub> (source:"https://ojs.aaai.org/index.php/AAAI/article/view/27021">).</figcaption>
 </figure>
 
 
