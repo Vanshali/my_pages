@@ -21,16 +21,16 @@ Aim: Translate Domain A to Domain B
 </script>
 
 Note that we do not have paired data, i.e., no mapping between the images of two domains. This major challenge which we often come across in medical images, is gracefully handled by the concept introduced in CycleGAN. Like a general GAN, it has a generator and a discriminator but notice their count difference. *It has two generators and two discriminators.* Let's discuss their specific tasks.
-The generator $$ G_{AB} $$ learns the mapping function that targets to translate domain A frames to domain B frames, whereas the generator $` G_{BA} `$ learns to translate domain B frames to domain A frames. Both generators have their corresponding discriminator that aims to distinguish the synthetic images from the real ones.
+The generator $$ G_{AB} $$ learns the mapping function that targets to translate domain A frames to domain B frames, whereas the generator $$ G_{BA} $$ learns to translate domain B frames to domain A frames. Both generators have their corresponding discriminator that aims to distinguish the synthetic images from the real ones.
 
 
-$` G_{AB}: A \rightarrow B `$ 
+$$ G_{AB}: A \rightarrow B $$ 
 
-$` G_{BA}: B \rightarrow A `$ 
+$$ G_{BA}: B \rightarrow A $$ 
 
-$`D_B:`$ Distinguishes B from $` G_{AB}(A) `$ 
+$$ D_B:`$ Distinguishes B from $` G_{AB}(A) $$ 
 
-$` D_A `$: Distinguishes B from $` G_{BA}(B)`$
+$$ D_A `$: Distinguishes B from $` G_{BA}(B) $$
 
 <figure>
   <img src="/my_pages/assets/cyclegan_diag.png" alt="CycleGAN">
@@ -51,9 +51,9 @@ $$
 
 An important component of the CycleGAN is the cycle-consistency loss. Due to unmapped data in both domains, the same set of images can be mapped randomly to any possible permutations in the other domain. To avoid this situation, cycle-consistency loss plays an important role. It can be defined as:
 
-$`
+$$
 L_{cyc}(G_{AB}, G_{BA}) = \mathbb{E}_{a\sim p_{data}(a)}[\lVert G_{BA}(G_{AB}(a))-a\rVert_1] + \mathbb{E}_{b\sim p_{data}(b)}[\lVert G_{AB}(G_{BA}(b))-b\rVert_1]
-`$
+$$
 
 
 The idea is:
