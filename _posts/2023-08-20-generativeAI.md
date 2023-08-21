@@ -16,6 +16,10 @@ Domain A: Uninformative colonoscopy frames
 Domain B: Informative colonoscopy frames
 Aim: Translate Domain A to Domain B
 ```
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 Note that we do not have paired data, i.e., no mapping between the images of two domains. This major challenge which we often come across in medical images, is gracefully handled by the concept introduced in CycleGAN. Like a general GAN, it has a generator and a discriminator but notice their count difference. *It has two generators and two discriminators.* Let's discuss their specific tasks.
 The generator $$ G_{AB} $$ learns the mapping function that targets to translate domain A frames to domain B frames, whereas the generator $` G_{BA} `$ learns to translate domain B frames to domain A frames. Both generators have their corresponding discriminator that aims to distinguish the synthetic images from the real ones.
 
