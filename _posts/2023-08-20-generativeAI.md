@@ -2,8 +2,9 @@
 title: "Generative AI in Medical Images"
 date: 2023-08-20
 ---
-
+<p style="text-align: justify;">
 Generative AI is a field with the potential to create new nonexistent/synthetic content that is eye-catching and eye-deceiving at the same time. This evolving part of AI has touched many domains, including text, audio, images, videos, etc. Even a combination of these domain types can be synthetically stitched together, which is very difficult to catch by the human eye. Amazingly, this mind-blowing creative content can be generated using the knowledge acquired from the existing data patterns. In other words, generative AI models are capable of using just the raw data to create new content with overall similar but not identical, rather unique information. This research area has experienced many breakthroughs in the past years and is currently the most trending topic in tech talks. Starting from 3D animations, gaming, media, and advertising, it has reached many more critical and crucial applications, such as healthcare.
+</p>
 
 Generative AI has the potential to transform and complement clinicians' abilities and hence, can improve patient care, drug discovery, and diagnostics. In addition, it can assist in overcoming the challenges faced by medical image analysis researchers due to lack of data, especially for some rare to find abnormalities. Including generative AI in clinical treatments provides various benefits, such as increased training samples for undersampled medical image classes, exemption from the procedures involved in collecting sensitive data and related privacy concerns, and personalized plans for retrospective treatments based on the patient's medical history. Apart from new content generation, the image-to-image translations supported by generative models introduce new ways to explore some significant tasks, such as noise/artifacts removal and domain adaptation. This article discusses a similar artifacts removal technique using CycleGAN which explores the abilities of generative models in transforming the uninformative colonoscopy image frames into clinically significant frames. This discussion is based on ["Can Adversarial Networks Make Uninformative Colonoscopy Video Frames Clinically Informative? (Student Abstract)"](https://ojs.aaai.org/index.php/AAAI/article/view/27021), published in AAAI 2023. The article covers the concept, implementation details, and code execution guidelines.
 
@@ -92,13 +93,13 @@ Remember to replace --num_test option with the count of images you want to test.
 Now the most important question is, ***"How good are the generated images?"*** (This question is critical in medical image analysis!). In the paper ["Can Adversarial Networks Make Uninformative Colonoscopy Video Frames Clinically Informative? (Student Abstract)"](https://ojs.aaai.org/index.php/AAAI/article/view/27021), YOLOv5 has been adopted to verify the quality of images obtained from the generator. It has been observed that the YOLOv5 performance got enhanced when translated informative frames were used. The artifacts, such as ghost colors, low-illumination, and fecal depositions, are satisfactorily handled using CycleGAN. However, motion blur and interlacing are still present in the translated images. 
 
 <figure>
-  <div style="display: inline-block; margin-right: 20px;">
+  <div style="display: inline-block; width: 25%;">
     <img src="/my_pages/assets/dia1.png" alt="yolov5_result">
   </div>
-  <div style="display: inline-block; margin-right: 20px;">
+  <div style="display: inline-block; width: 25%;">
     <img src="/my_pages/assets/dia2.png" alt="yolov5_result">
   </div>
-  <div style="display: inline-block;">
+  <div style="display: inline-block; width: 25%;">
     <img src="/my_pages/assets/dia3.png" alt="yolov5_result">
   </div>
   <figcaption>Detection performance of YOLOv5 using translated frames (source:"https://ojs.aaai.org/index.php/AAAI/article/view/27021").</figcaption>
