@@ -97,7 +97,7 @@ Remember to replace --num_test option with the count of images you want to test.
 
 ## Strengths and Limitations
 
-Now the most important question is, ***"How good are the generated images?"*** (This question is critical in medical image analysis!). In the paper ["Can Adversarial Networks Make Uninformative Colonoscopy Video Frames Clinically Informative? (Student Abstract)"](https://ojs.aaai.org/index.php/AAAI/article/view/27021), YOLOv5 has been adopted to verify the quality of images obtained from the generator. It has been observed that the YOLOv5 performance got enhanced when translated informative frames were used. The artifacts, such as ghost colors, low-illumination, and fecal depositions, are satisfactorily handled using CycleGAN. However, motion blur and interlacing are still present in the translated images. 
+Now the most important question is, **"How good are the generated images?"** (This question is critical in medical image analysis!). In the paper ["Can Adversarial Networks Make Uninformative Colonoscopy Video Frames Clinically Informative? (Student Abstract)"](https://ojs.aaai.org/index.php/AAAI/article/view/27021), YOLOv5 has been adopted to verify the quality of images obtained from the generator. It has been observed that the YOLOv5 performance got enhanced when translated informative frames were used. The artifacts, such as ghost colors, low-illumination, and fecal depositions, are satisfactorily handled using CycleGAN. However, motion blur and interlacing are still present in the translated images. 
 
 
 <figure>
