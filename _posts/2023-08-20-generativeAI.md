@@ -6,8 +6,10 @@ date: 2023-08-20
 Generative AI is a field with the potential to create new nonexistent/synthetic content that is eye-catching and eye-deceiving at the same time. This evolving part of AI has touched many domains, including text, audio, images, videos, etc. Even a combination of these domain types can be synthetically stitched together, which is very difficult to catch by the human eye. Amazingly, this mind-blowing creative content can be generated using the knowledge acquired from the existing data patterns. In other words, generative AI models are capable of using just the raw data to create new content with overall similar but not identical, rather unique information. This research area has experienced many breakthroughs in the past years and is currently the most trending topic in tech talks. Starting from 3D animations, gaming, media, and advertising, it has reached many more critical and crucial applications, such as healthcare.
 </p>
 <p style="text-align: justify;">
-Generative AI has the potential to transform and complement clinicians' abilities and hence, can improve patient care, drug discovery, and diagnostics. In addition, it can assist in overcoming the challenges faced by medical image analysis researchers due to lack of data, especially for some rare to find abnormalities. Including generative AI in clinical treatments provides various benefits, such as increased training samples for undersampled medical image classes, exemption from the procedures involved in collecting sensitive data and related privacy concerns, and personalized plans for retrospective treatments based on the patient's medical history. Apart from new content generation, the image-to-image translations supported by generative models introduce new ways to explore some significant tasks, such as noise/artifacts removal and domain adaptation. This article discusses a similar artifacts removal technique using CycleGAN which explores the abilities of generative models in transforming the uninformative colonoscopy image frames into clinically significant frames. This discussion is based on ["Can Adversarial Networks Make Uninformative Colonoscopy Video Frames Clinically Informative? (Student Abstract)"](https://ojs.aaai.org/index.php/AAAI/article/view/27021), published in AAAI 2023. The article covers the concept, implementation details, and code execution guidelines.
+Generative AI has the potential to transform and complement clinicians' abilities and hence, can improve patient care, drug discovery, and diagnostics. In addition, it can assist in overcoming the challenges faced by medical image analysis researchers due to lack of data, especially for some rare to find abnormalities. Including generative AI in clinical treatments provides various benefits, such as increased training samples for undersampled medical image classes, exemption from the procedures involved in collecting sensitive data and related privacy concerns, and personalized plans for retrospective treatments based on the patient's medical history. Apart from new content generation, the image-to-image translations supported by generative models introduce new ways to explore some significant tasks, such as noise/artifacts removal and domain adaptation. This article discusses a similar artifacts removal technique using CycleGAN which explores the abilities of generative models in transforming the uninformative colonoscopy image frames into clinically significant frames. 
 </p>
+This discussion is based on ["Can Adversarial Networks Make Uninformative Colonoscopy Video Frames Clinically Informative? (Student Abstract)"](https://ojs.aaai.org/index.php/AAAI/article/view/27021), published in AAAI 2023. The article covers the concept, implementation details, and code execution guidelines.
+
 
 ## Brief Introduction 
 <p style="text-align: justify;">
@@ -22,9 +24,9 @@ Aim: Translate Domain A to Domain B
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
-<p style="text-align: justify;">
+
 Note that we do not have paired data, i.e., no mapping between the images of two domains. This major challenge which we often come across in medical images, is gracefully handled by the concept introduced in CycleGAN. Like a general GAN, it has a generator and a discriminator but notice their count difference. *It has two generators and two discriminators.* Let's discuss their specific tasks. The generator $$ G_{AB} $$ learns the mapping function that targets to translate domain A frames to domain B frames, whereas the generator $$ G_{BA} $$ learns to translate domain B frames to domain A frames. Both generators have their corresponding discriminator that aims to distinguish the synthetic images from the real ones.
-</p>
+
 
 
 $$ G_{AB}: A \rightarrow B $$ 
@@ -66,12 +68,12 @@ If we translate the domain A (source) distribution to the domain B (target) dist
 ```
 
 ## Implementation Details
-<p style="text-align: justify;">
+
 The PyTorch implementation of CycleGAN is available at [https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). The dataset used in this work (SUN Database) can be obtained on sending a request as per the instructions mentioned on [http://sundatabase.org/](http://sundatabase.org/). Also, to obtain the annotations for informative and uninformative frames, you can refer to [this](https://ieeexplore.ieee.org/abstract/document/10017475/) paper and can contact me at [this](mailto:vanshalisharma@iitg.ac.in)
 mail id. 
 Once you download the code and the dataset, create a folder *./data* inside your downloaded code's *dataset* folder. Then create subfolders *testA*, *testB*, *trainA*, and *trainB*. Place your uninformative frames pertaining to the train and test set in the *trainA* and *testA* subfolders, respectively. Do the same for informative frames and place them in the *trainB* and *testB* folders. 
 To run the files using the docker image, you can use the image available at [vanshalisharma/my_kubernetes_image:cgan](vanshalisharma/my_kubernetes_image:cgan). 
-</p>
+
 
 Let's train the CycleGAN using the below command:
 ```
